@@ -27,7 +27,7 @@ const RenderProject =  ({description, title, imageUrl, tags}:projectProps)=>{
             <span> {description}</span>
          </div>
        
-        <div className='relative flex md:p-[40px] ml-[10px] '>
+        <div className='relative flex md:p-[40px] ml-[10px] leading-[1px]'>
                 <ul className="flex flex-row flex-nowrap gap-[20px]"> 
             {tags?.map((tag, index)=>( 
                 <li className="tracking-wider text-[14px] md:text-[1rem] bg-black/50 p-[10px] md:p-[15px] text-white leading-relaxed space-x-[10px] flex rounded-full"  key={index}>{tag}</li>
