@@ -7,7 +7,7 @@ import ProjectComponent from "@/Components/projects"
 
 export default function SetUpPage() {
   return (
-  <main className="">
+  <main className="items-center justify-center">
     <Particle />
     <TopLeftImg />
    <Intro />

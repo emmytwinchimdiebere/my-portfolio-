@@ -1,15 +1,17 @@
 "use client"
 import { links } from '../../lib/data';
-import React from 'react'
+import React, { useState } from 'react'
 import {motion} from "framer-motion";
 import Link from "next/link";
 import {usePathname} from  'next/navigation'
+import clsx from 'clsx';
 
 
 export default function Header() {
-       const path = usePathname();
-       console.log(path);
+   
 
+       const [activeLink, setActiveLink] = useState("Home")
+    
 
   return (
     <header className='w-full flex-wrap z-[999] m-auto flex flex-row relative md:rounded-none  pb-6 px-4  md:pb-0 md:top-0 top-[2rem] left-5 md:w-full md:bg-white md:left-0'>
@@ -22,12 +24,30 @@ export default function Header() {
                   
         <ul  className="flex flex-row flex-nowrap">
        
-       {links.map((link)=>(
-         <li key={link.path}>
+       {links.map((link)=>{
+         
+          return (
+          <li  onClick = {()=>setActiveLink(link.name)} className='relative' key={link.path}>
           
-           <Link  className = {`${link.path === path && "text-red-800 font-extrabold"} link py-4  px-4 mt-0  relative font-medium  hover:text-blue-800`} href = {link.path}>{link.name}</Link>
-         </li>
-       ))}
+            <Link  className = {clsx(" relative link py-4  px-4 mt-0  font-medium  hover:text-blue-800", {
+                "text-lime-500 md:bg-gray-100 ring-offset-neutral-400 md:rounded-full ring-fuchsia-500 p-5": activeLink === link.name
+            })} 
+            
+            href = {link.path}
+           
+            >
+            
+            {link.name}
+            
+            {
+                   activeLink === link.name && (  <span className = "hidden md:flex bg-gray-100 -z-10 rounded-full text-black font-medium absolute inset-0 "></span>
+       )}
+      
+            </Link>
+          </li>
+        )})}
+       
+       
    </ul>
             </motion.div>
 

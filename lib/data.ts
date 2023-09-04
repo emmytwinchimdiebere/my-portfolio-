@@ -13,30 +13,30 @@ interface Routes  {
 export const links =  [
         {
             name:"Home",
-            path:"/"
+            path:"#home"
         },
 
         {
             name:"About",
-            path:"/about"
+            path:"#about"
         },
 
         {
             name:"Projects",
-            path:"/projects"
+            path:"#projects"
         },
 
         {
             name:"Contact",
-            path:"/contact"
+            path:"#contact"
         },
         {
             name:"Skills",
-            path:"/skills"
+            path:"#skills"
         },
         {
             name:"experience",
-            path: "/experience"
+            path: "#experience"
         }
 ] as const
 
@@ -57,7 +57,7 @@ export const projectsData = [
       imageUrl: rmtdevImg,
     },
     {
-      title: "Word Analytics",
+      title: "Blog Application",
       description:
         "developed a blog applications for content creation & management",
       tags: ["React", "Next.js", "SQL", "Tailwind", "Framer"],

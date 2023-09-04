@@ -23,7 +23,7 @@ export default function Intro() {
   }, [])
   return (
    
-    <div className="flex flex-col  lg:flex-row  relative w-[100%] z-[999]">
+    <div className="flex flex-col  lg:flex-row  relative w-[100%] z-[999]" id  = "Home">
        
       <motion.div initial = {{opacity:0, scale:0}} animate={{opacity:1, scale:1}} transition = {{type:"tween", duration:0.5}} className="about_me top-[50px] relative px-10 lg:w-[50%] lg:top-[10rem] flex flex-col  left-[0] lg:left-0 ">
 
@@ -52,12 +52,12 @@ export default function Intro() {
 
        <motion.div className="relative top-[6rem] flex px-10  lg:flex-row flex-col-reverse gap-y-12  " initial={{opacity:0,scale:0}} animate={{scale:1, opacity:1}} transition={{type:"tween", duration:0.5}}>
        
-       <div className="flex  relative left-[50px] ">
-       <Image quality={95} priority={true} width={200} height={200}  className=" lg:rounded-full lg:border-4 lg: border-slate-500   grayscale-0 hover:grayscale object-cover w-[300px] h-[300px]" alt= "profileImage" src = "/DAVIDO-removebg-preview.png" /> 
+       <div className="flex  relative left-[20px] ">
+       <Image quality={95} priority={true} width={300} height={300}  className="bg-gray-200 profile_img object-center grayscale-0 hover:grayscale-0 object-cover w-[400px] md:w-[300px] h-[300px]" alt= "profileImage" src = "/me.png" /> 
        </div>
       
           <div className="w-full max-w-screen-sm lg:max-w-screen relative lg:absolute right-0 top-[2rem] lg:top-[3rem] lg:translate-x-[120%]">
-            <span className="text-2xl lg:text-3xl text-stone-900 text-justify !leading-[50px]  ">Hello I am <span className="font-extrabold">Peter</span>, I am  a <span className="font-extrabold">Full-stack</span> Developer with years of <span className="font-extrabold">experience</span> , i enjoy building sites & apps my focus is <TextTransition springConfig={presets.gentle} className="text-red-900 font-extrabold">{Texts[index %Texts.length]}</TextTransition>.</span>
+            <span className="text-2xl lg:text-3xl text-stone-900 text-justify !leading-[50px]  ">Hello I am <span className="font-extrabold">Peter</span>, I am  a <span className="font-extrabold">Full-stack</span> Developer with years of <span className="font-extrabold">experience</span> , i enjoy building sites & apps my focus is <TextTransition inline = {true} springConfig={presets.gentle} className="text-red-900 font-extrabold">{Texts[index %Texts.length]}</TextTransition>.</span>
           </div>
        </motion.div>
        

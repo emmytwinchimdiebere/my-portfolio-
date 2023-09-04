@@ -10,7 +10,7 @@ import RenderProject from "@/Components/renderProjects"
 const  ProjectComponent = () =>{
     return(
 
-<section>
+<section id ="projects">
         <SectionPage>My Projects</SectionPage>
 {projectsData?.map((project, index)=>(
     <React.Fragment key={index}>

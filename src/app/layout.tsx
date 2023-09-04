@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={`${poppins.className} bg-stone-50 text-gray-950 relative h-screen overflow-x-hidden`}>
+    <html lang="en" className=' !scroll-smooth'>
+      <body className={`${poppins.className} bg-stone-50 text-gray-950 relative  overflow-x-hidden h-screen  `}>
 
         <div className="bg-[#fbe2e3] absolute top-[-6rem] right-[11rem] h-[31.25rem] w-[68.75rem] md:w-[31.25rem] rounded-full blur-[10rem] -z-[999]"></div>
         <div className="bg-[#dbd7fb] absolute top-[-1rem] left-[-35rem] md:left-[-33rem] lg:left-[-28rem] h-[31.25rem] w-[68.75rem] md:w-[31.25] rounded-full blur-[10rem] -z-[999]]"></div>
