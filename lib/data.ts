@@ -64,3 +64,23 @@ export const projectsData = [
       imageUrl: wordanalyticsImg,
     },
   ] as const
+
+  export const skills = [
+    "React", 
+    "Laravel",
+    "Mysql",
+    "mongoDb",
+    "Next js",
+    "postgres",
+    "Nodejs",
+    "Prisma",
+    "html",
+    "css",
+    "javascript",
+    "tailwindCss",
+    "Docker", 
+    "Kubernates",
+    "Typescript",
+    "Redux Toolkit", 
+    "Framer motion"
+  ] as const
