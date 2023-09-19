@@ -2,6 +2,9 @@ import React from 'react'
 import corpcommentImg from "../public/corpcomment.png"
 import rmtdevImg from "../public/rmtdev.png"
 import wordanalyticsImg from  "../public/age.jpg"
+import { CgWorkAlt } from "react-icons/cg";
+import { FaReact } from "react-icons/fa";
+import { LuGraduationCap } from "react-icons/lu";
 
 interface Routes  {
 
@@ -37,6 +40,11 @@ export const links =  [
         {
             name:"experience",
             path: "#experience"
+        }, 
+
+        {
+          name:"Blog",
+          path:"#blog"
         }
 ] as const
 
@@ -84,3 +92,31 @@ export const projectsData = [
     "Redux Toolkit", 
     "Framer motion"
   ] as const
+
+
+  export const experiencesData = [
+    {
+      title: "Graduated from IT School",
+      location: "Lagos, Nigeria",
+      description:
+        "I graduated after 6 months of studying. I Started working on Personal Projects & frelancing.",
+      icon: React.createElement(LuGraduationCap),
+      date: "2020",
+    },
+    {
+      title: "Front-End Developer",
+      location: "Lagos, Nigeria",
+      description:
+        "I worked as a front-end developer for one year in a startup. this gave me the chance to become a full stack developer",
+      icon: React.createElement(CgWorkAlt),
+      date: "2020 - 2021",
+    },
+    {
+      title: "Full-Stack Developer",
+      location: "Lagos , Nigeria",
+      description:
+        "I'm now a full-stack developer working as a freelancer. My stack includes React, Next.js, TypeScript, Tailwind, Prisma and Mysql. I'm open to full-time opportunities.",
+      icon: React.createElement(FaReact),
+      date: "2022 - present",
+    },
+  ] as const;

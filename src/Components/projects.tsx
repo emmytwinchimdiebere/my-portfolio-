@@ -14,8 +14,8 @@ const  ProjectComponent = () =>{
    
     return(
 
-<motion.section initial = {{opacity:0, scale:0}} animate = {{opacity:1,  scale:1}} className="scroll-mt-[7rem]" id ="projects" ref={ref}>
-<SectionPage>My Projects</SectionPage>
+<motion.section variants={{hidden:{opacity:0,  scale:0}, visibility:{opacity:1, scale:1,}}} animate = {{type:"tween", transition:{delay:0.05}}} initial = "hidden" whileInView="visibility" viewport = {{once:true}}  className="scroll-mt-[7rem]" id ="projects" ref={ref}>
+<SectionPage className="text-3xl font-bold capitalize lg:mt-[12rem] mt-[10rem]  justify-center items-center flex ">My Projects</SectionPage>
 {projectsData?.map((project, index)=>(
     <React.Fragment key={index}>
     <RenderProject {...project}/>

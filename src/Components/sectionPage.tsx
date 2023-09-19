@@ -1,7 +1,14 @@
 import React from 'react'
 
-export default function SectionPage({children} : {children: React.ReactNode }) {
-  return <h2 className = "text-3xl font-bold capitalize lg:mt-[16rem] mt-[10rem]  justify-center items-center flex ">{children}</h2>
+type sectionProps = {
+  children :React.ReactNode,
+  className: string
+}
+export default function SectionPage({children, className, ...props} : sectionProps) {
+  return (
+  <h1 className={className}  {...props} >{children}</h1>
+  
+  )
 
 }
 

@@ -23,7 +23,7 @@ export default function Header() {
             <motion.div  className = "text-black scroll:mt-[10px] md:scroll-mt-[2px] justify-start logo  flex text-2xl font-bold px-4 p-5 ml-10 hover:text-stone-700">
               <span>rockycodes</span>
             </motion.div>
-              <div className="px-[16px]  top-5 relative left-[40%] lg:left-[55%]">
+              <div className="px-[16px]  top-5 relative left-[40%] lg:left-[50%]">
               <ThemeToggle />
               </div>
             <motion.div  className = " md:p-6  absolute right-1 md:left-[70%]  bg-white shadow-black/[0.5]  md:pb-0   md:rounded-none w-full md:px-0 ">
@@ -34,8 +34,10 @@ export default function Header() {
          
           return (
           <li  onClick = {()=>{setActiveLink(link.name); setLastTimeLinkClicked(Date.now())}} className='relative ' key={link.path}>
+
+            
              
-            <Link  className = {clsx("text-black relative link py-4  px-4 mt-0  font-medium  hover:text-blue-800", {
+            <Link  className = {clsx("text-black relative link py-4  px-4 mt-0  font-medium  hover:text-blue-800 right-12", {
                 "text-lime-500 md:bg-gray-100 ring-offset-neutral-400 md:rounded-full ring-fuchsia-500 p-5": activeLink === link.name
             })} 
             

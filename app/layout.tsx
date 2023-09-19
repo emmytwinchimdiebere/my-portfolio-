@@ -4,9 +4,8 @@ import type { Metadata } from 'next'
 import { Inter,Poppins,Roboto } from 'next/font/google';
 import Header from '@/Components/header';
 import SetActiveLinkContextProvider from '@/context/setActiveLinkContext';
-import { motion, useAnimation, useInView } from "framer-motion"
-import { useRef, useEffect } from "react"
 import { ThemeProvider } from '@/context/ThemePovider';
+import MobileLinks from "@/Components/mobileLinks"
 
 
 
@@ -24,19 +23,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
 
-  const ref = useRef(null)
-  const controls = useAnimation()
-    const isInView = useInView(ref,{once:true});
-    useEffect(()=>{
-      if(isInView){
-        console.log(isInView)
-        controls.start("visible")    
-      }
-    }, [isInView, controls])
-  
+ 
   
     return (
-    <html lang="en" className=' !scroll-smooth'>
+    <html lang="en" >
       <body  className={`${poppins.className}  relative  overflow-x-hidden h-screen `}>
 
         <div className="bg-[#fbe2e3] absolute top-[-6rem] right-[11rem] h-[31.25rem] w-[68.75rem] md:w-[31.25rem] rounded-full blur-[10rem] -z-[999]"></div>
@@ -47,14 +37,14 @@ export default function RootLayout({
      
         <SetActiveLinkContextProvider>
 
-      <motion.main variants={{hidden: {opacity:0, y:100}, visible:{opacity: 1, y:0, }}} initial="hidden" transition={{duration:0.5, delay:0.25}} animate={controls} ref = {ref}>
+      <main>
   
       <Header />
-   
+      <MobileLinks />
       {children}
    
       
-      </motion.main>
+      </main>
 
       </SetActiveLinkContextProvider>
       </ThemeProvider >
