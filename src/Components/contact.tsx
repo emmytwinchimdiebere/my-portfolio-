@@ -26,18 +26,18 @@ const messageSender  = async ( formData : FormData) =>{
 if (typeof res  === 'string') {
   // Handle the case when response is a string
       setMessage(res)
-      {message ? toast(message, {type:"success", position:"top-right"}) : ""}
+      {message ? toast(message, {type:"success", position:"bottom-right"}) : ""}
 } else {
   // Handle the case when response is an object
   if (res.message) {
     // Access the 'message' property safely
     setMessage(res.message)
 
-    {message ? toast(message, {type:"success", position:"top-right"}) : ""}
+    {message ? toast(message, {type:"success", position:"bottom-left"}) : ""}
   } else if (res.error) {
     // Handle the 'error' property if needed
     setMessage(res.error)
-    {message ? toast(message, {type:"error", position:"top-right"}) : ""}
+    {message ? toast(message, {type:"error", position:"bottom-left"}) : ""}
   }
 }
 }

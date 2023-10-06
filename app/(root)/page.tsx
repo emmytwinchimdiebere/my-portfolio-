@@ -7,6 +7,7 @@ import Skills from "@/Components/skills"
 import Aboutme from "@/Components/aboutme"
 import Experience from "@/Components/experience"
 import Contact from "@/Components/contact"
+import Footer from "@/Components/footer"
 
 
 
@@ -14,7 +15,7 @@ import Contact from "@/Components/contact"
 export default function SetUpPage() {
 
   return (
-  <main  className="items-center justify-center">
+  <main  className="items-center justify-center w-screen ">
    
     <Particle />
     <TopLeftImg />
@@ -24,6 +25,8 @@ export default function SetUpPage() {
    <Skills />
    <Experience />
    <Contact />
+   <Footer/>
+
     
 
   </main>

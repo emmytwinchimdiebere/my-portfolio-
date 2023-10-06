@@ -10,8 +10,8 @@ import {motion } from  "framer-motion"
 function MobileLinks() {
     const {activeLink, setActiveLink, setLastTimeLinkClicked} = useActiveSectionProvider()
   return (
-    <header className='fixed flex z-[1000] bg-blue-500 w-[100%] lg:hidden h-auto justify-end items-end  flex-nowrap px-4 -mt-[30px]  '>
-        <div className = "overflow-x-scroll whitespace-nowrap w-[100%] p-5 top-0">
+    <header className='fixed mobile flex bg-blue-700 w-screen lg:hidden h-auto justify-end items-end  flex-wrap px-4 -mt-[30px]  '>
+        <div className = "overflow-x-auto whitespace-nowrap w-[100%] p-5 top-0 inlineelement">
           
 <ul  className=" lg:hidden inline flex-row flex-nowrap  m-0  ">
      
@@ -33,7 +33,7 @@ function MobileLinks() {
           {link.name}
           
           {
-                 activeLink === link.name && (  <motion.span transition={{stiffness:200, damping:20,  type:"spring"}} className = "flex text-black bg-gray-200 rounded-full -z-10  font-light absolute inset-0 "></motion.span>
+                 activeLink === link.name && (  <motion.span transition={{stiffness:200, damping:20,  type:"spring"}} className = "flex text-white bg-black/10 rounded-full -z-10  font-light absolute inset-0 "></motion.span>
      )}
     
           </Link>

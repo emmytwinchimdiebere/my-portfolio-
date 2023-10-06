@@ -27,10 +27,10 @@ export default function RootLayout({
   
     return (
     <html lang="en" >
-      <body  className={`${poppins.className}  relative  overflow-x-hidden h-screen `}>
+      <body  className={`${poppins.className} overflow-x-hidden dark:text-white`}>
 
-        <div className="bg-[#fbe2e3] absolute top-[-6rem] right-[11rem] h-[31.25rem] w-[68.75rem] md:w-[31.25rem] rounded-full blur-[10rem] -z-[999]"></div>
-        <div className="bg-[#dbd7fb] absolute top-[-1rem] left-[-35rem] md:left-[-33rem] lg:left-[-28rem] h-[31.25rem] w-[68.75rem] md:w-[31.25] rounded-full blur-[10rem] -z-[999]]"></div>
+        <div className="bg-[#fbe2e3] hidden lg:flex absolute top-[-6rem] right-[11rem] h-[31.25rem] w-[68.75rem] md:w-[31.25rem] rounded-full blur-[10rem] -z-[999]"></div>
+        <div className="bg-[#dbd7fb] absolute hidden lg:flex top-[-1rem] left-[-35rem] md:left-[-33rem] lg:left-[-28rem] h-[31.25rem] w-[40rem] lg:w-[60rem] md:w-[31.25] rounded-full blur-[10rem] -z-[999]]"></div>
       
       
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>

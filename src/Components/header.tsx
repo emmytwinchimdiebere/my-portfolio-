@@ -3,7 +3,6 @@ import { links } from '../../lib/data';
 import React, { useState} from 'react'
 import {motion} from "framer-motion";
 import Link from "next/link";
-import {usePathname} from  'next/navigation'
 import clsx from 'clsx';
 import {useActiveSectionProvider } from '@/context/setActiveLinkContext';
 import { ThemeToggle } from './toggleTheme';
@@ -18,15 +17,15 @@ export default function Header() {
     
 
   return (
-    <header className='fixed flex-wrap z-[999]   flex flex-row  md:rounded-none   px-4  pb-0 top-0   w-full bg-white left-0'>
+    <header className='fixed flex-wrap z-[999] w-screen   flex flex-row  md:rounded-none  py-[10px]  px-4  lg:py-[20px] top-0  bg-white left-0'>
      
-            <motion.div  className = "text-black scroll:mt-[10px] md:scroll-mt-[2px] justify-start logo  flex text-2xl font-bold px-4 p-5 ml-10 hover:text-stone-700">
+            <motion.div  className = "text-black scroll:mt-[10px] md:scroll-mt-[2px] justify-start logo  flex text-2xl font-bold relative left-[10px] py-[10px]  lg:py-[20px] hover:text-stone-700">
               <span>rockycodes</span>
             </motion.div>
-              <div className="px-[16px]  top-5 relative left-[40%] lg:left-[50%]">
+              <div className="px-[16px] absolute right-0 py-[10px] lg:py-[20px] lg:absolute lg:right-10 md:right-5   z-[999]">
               <ThemeToggle />
               </div>
-            <motion.div  className = " md:p-6  absolute right-1 md:left-[70%]  bg-white shadow-black/[0.5]  md:pb-0   md:rounded-none w-full md:px-0 ">
+            <motion.div  className = " md:p-6  absolute right-1 md:left-[50%]  bg-white shadow-black/[0.5]  md:pb-0   md:rounded-none w-full md:px-0 ">
                   
         <ul  className="flex-row flex-nowrap hidden lg:flex">
      

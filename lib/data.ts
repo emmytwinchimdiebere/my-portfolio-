@@ -44,7 +44,7 @@ export const links =  [
 
         {
           name:"Blog",
-          path:"#blog"
+          path:"/articles"
         }
 ] as const
 

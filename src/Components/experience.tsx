@@ -11,13 +11,13 @@ type Props = {}
 function Experience({}: Props) {
   const {ref} = useSectionInview("experience")
   return (
-    <section id="experience" ref = {ref}>
-      <SectionPage className='"text-4xl lg:text-4xl font-extrabold capitalize lg:mt-[12rem] mt-[10rem] mb-[15px]  justify-center items-center flex "'>Experience</SectionPage>
+    <section className=' dark:text-white' id="experience" ref = {ref}>
+      <SectionPage className="text-4xl lg:text-4xl font-extrabold capitalize lg:mt-[12rem] mt-[10rem] mb-[15px]  justify-center items-center flex ">Experience</SectionPage>
         <VerticalTimeline lineColor = "">
             {experiencesData?.map((item, index)=>(
                <React.Fragment key={index}>
-                 <VerticalTimelineElement
-
+                 <VerticalTimelineElement 
+                  
                  contentStyle = {{
                   background:"#fff",
                   color:"#000",
@@ -28,12 +28,14 @@ function Experience({}: Props) {
                   borderRight:"0.4rem solid #9ca3af"
                  }}
 
+                 contentDateStyle = {{color:"yellow"}}
+
                  date = {item.date}
                  icon = {item.icon}
                  >
                   <h1 className ="font-extrabold capitalize mt-[10px]">{item.title}</h1>
                   <p className="text-gray-700 ">{item.description}</p>
-                  <p className = "text-gray-500 divide-y-2 divide-solid divide-opacity-5 divide-slate-500">{item.location}</p>
+                  <p className = "text-gray-500 border-t-2 border-black/10">{item.location}</p>
                 </VerticalTimelineElement>
                </React.Fragment>
             ))}

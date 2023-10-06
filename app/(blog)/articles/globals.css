@@ -171,3 +171,9 @@ textarea:focus{
     padding-left: 10px;
     border-color: #000;
 }
+
+.inlineelement{
+    overscroll-behavior-inline: contain;
+    overflow-x: auto;
+   
+}
