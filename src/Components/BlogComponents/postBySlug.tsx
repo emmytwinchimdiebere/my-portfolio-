@@ -71,42 +71,42 @@ import CircleLoader from "./BackDropLoader";
   em: ({children}:{children:React.ReactNode}) => <em className="text-gray-600 font-semibold">{children}</em>,
 
   // Ex. 2: rendering a custom `link` annotation
-  link: ({value, children}:{value: any,  children:React.ReactNode}) => {
-    const target = (value?.href || '').startsWith('http') ? '_blank' : undefined
+  link: (props:any) => {
+    const target = (props.value?.href || '').startsWith('http') ? '_blank' : undefined
     return (
-      <a className=" underline text-gray-600 font-bold decoration-slate-400" href={value?.href} target={target} >
-        {children}
+      <a className=" underline text-gray-600 font-bold decoration-slate-400" href={props.value?.href} target={target} >
+        {props.children}
       </a>
     )
   },
 },
 block: {
   // Ex. 1: customizing common block types
-  h1: ({children}:{ children:React.ReactNode}) => <h1 className="text-2xl">{children}</h1>,
-  blockquote: ({children}:{value: any,  children:React.ReactNode}) => <blockquote className="border-l-purple-500">{children}</blockquote>,
+  h1: (props:any) => <h1 className="text-2xl">{props.children}</h1>,
+  blockquote: (props:any) => <blockquote className="border-l-purple-500">{props.children}</blockquote>,
 
   // Ex. 2: rendering custom styles
-  customHeading: ({children}:{value: any,  children:React.ReactNode}) => (
-    <h2 className="text-lg text-primary text-purple-700">{children}</h2>
+  customHeading: (props:any) => (
+    <h2 className="text-lg text-primary text-purple-700">{props.children}</h2>
   ),
 },   
 list: {
   // Ex. 1: customizing common list types
-  bullet: ({children}:{value: any,  children:React.ReactNode}) => <ul className="mt-xl">{children}</ul>,
-  number: ({children}:{value: any,  children:React.ReactNode}) => <ol className="mt-lg">{children}</ol>,
+  bullet: (props:any) => <ul className="mt-xl">{props.children}</ul>,
+  number: (props:any) => <ol className="mt-lg">{props.children}</ol>,
 
   // Ex. 2: rendering custom lists
-  checkmarks: ({children}:{value: any,  children:React.ReactNode}) => <ol className="m-auto text-lg">{children}</ol>,
+  checkmarks: (props:any) => <ol className="m-auto text-lg">{props.children}</ol>,
 },
 
 listItem: {
   // Ex. 1: customizing common list types
-  bullet: ({children}:{value: any,  children:React.ReactNode}) => <li style={{listStyleType: 'disclosure-closed'}}>{children}</li>,
+  bullet: (props:any) => <li style={{listStyleType: 'disclosure-closed'}}>{props.children}</li>,
 
   // Ex. 2: rendering custom list items
-  checkmarks: ({children}:{value: any,  children:React.ReactNode}) => <li>✅ {children}</li>,
+  checkmarks: (props:any) => <li>✅ {props.children}</li>,
 
-  number: ({children}:{value: any,  children:React.ReactNode}) => <li  className=" list-decimal">{children}</li>,
+  number: (props:any) => <li  className=" list-decimal">{props.children}</li>,
 
 },
 }
