@@ -8,11 +8,11 @@ import { client } from "../../../lib/sanity-client";
 import { FaArrowUp } from "react-icons/fa";
 import { ArrowUpRightIcon } from "lucide-react";
 import {Chip, Tooltip} from  "@mui/material"
-import { useSelectedLayoutSegments } from "next/navigation";
 import { useEffect, useState } from "react";
 import { postsQuery } from "../../../lib/query";
 import { sanityFetch } from "../../../lib/client";
 import { SkeletonCard } from "./SkeketonCard";
+
 
 export default function Posts({ posts = [] }: { posts: SanityDocument[] }) {
   const [loading, setLoading] = useState(false)

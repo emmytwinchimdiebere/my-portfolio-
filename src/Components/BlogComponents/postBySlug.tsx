@@ -8,13 +8,14 @@ import { PortableText,  } from "@portabletext/react";
 import { client } from "../../../lib/sanity-client";
 import SyntaxHighlighter from "react-syntax-highlighter"
 import {dark} from "react-syntax-highlighter/dist/esm/styles/hljs"
-import React, {useEffect, useState} from "react";
-import { Backdrop, Chip } from "@mui/material";
+import React, {Fragment, useEffect, useState} from "react";
+import { Avatar, Backdrop, Chip } from "@mui/material";
 import Link from "next/link";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { postQuery } from "../../../lib/query";
 import CircleLoader from "./BackDropLoader";
+import CommentForm from "./CommentForn";
 
 
 
@@ -33,13 +34,17 @@ import CircleLoader from "./BackDropLoader";
       const [loader, setLoader] = useState<boolean>(false);
       const delay = (ms:number)=>new Promise((resolve)=>setTimeout(resolve, ms));
       const [open, setOpen] = useState<boolean>(false);
+      const [expanded,setExpanded] = useState<boolean>(true)
+      const [filteredPost , setFilteredPost ] = useState([])
 
+      
+     
       const fetchSinglePost = async ()=>{
         setLoader(!loader);
         setOpen(!open);
         delay(10000);
           const fetchPost = await client.fetch<SanityDocument[]>(postQuery, {slug})
-
+          
           if(fetchPost){
             setLoader(false);
             setOpen(false);
@@ -51,7 +56,14 @@ import CircleLoader from "./BackDropLoader";
       
       useEffect(()=>{
         fetchSinglePost();
+
+        {post && post?.map((item:any)=> { const filter =  item.related.filter((filteredPost:any)=> filteredPost._id !==  item._id)
+          setFilteredPost(filter);
+        })}
       }, [])
+
+    
+        
 
 
         const components = {
@@ -111,13 +123,13 @@ listItem: {
 },
 }
     
-              
+        
                    
   
         return (
-          <main className="grid text-justify overflow-x-hidden lg:grid-cols-3 grid-cols-1 gap-5 relative w-[100%] pl-[40px] lg:px-[50px] ">
+          <main className="grid text-justify overflow-x-hidden lg:grid-cols-3 grid-cols-1 gap-5 relative w-[100%]  lg:px-[50px] px-[40px] mt-[60px] ">
             
-            <div className=" lg:col-span-2 col-span-1 ">
+            <div className=" sm:col-span-2 col-span-1 flex flex-col ">
             
             {posts?.map((items:any)=>(
             <div key = {items._id} className="">
@@ -150,7 +162,75 @@ listItem: {
               { <PortableText  value={items.body} components={components} /> }
             </div>
            ))}
+            {posts?.map((id, index)=>(
+              <div key= {index}>
+                 {<CommentForm id = {id._id} />}
+              </div>
+            ))}
 
+              <div className="relative w-full px-5 py-10 flex flex-col bg-white shadow-2xl">
+                <span className="px-5 text-bold text-2xl "> Comments:</span>
+              {posts?.map((id)=>(
+              <div className = " " key= {id._id}>
+                  <div className="flex flex-col ">
+                        {id.comments.map((comment:any, index:number)=>(
+                          <div key={index} className="flex flex-col" >
+                              <span className="flex flex-shrink-0 flex-row gap-5 py-10"> <Avatar sx = {{backgroundColor:"deeppink"}}>{comment.name.charAt(0).toUpperCase()}</Avatar>{comment.name}
+                              <Chip className="px-5 -mt-[5px] w-auto" variant= "outlined" label = {new Date(comment._createdAt).toLocaleString("en-us", {year:"numeric", month:"short", day:"numeric"})} />
+                              </span>
+                            <div className={`${expanded ? " line-clamp-5" : " line-clamp-none"}`}>
+                              
+                              <div dangerouslySetInnerHTML={{__html:comment.text}} />
+              
+                            </div>
+                         
+                                    <span onClick={()=>setExpanded(!expanded)}>{ expanded ? "show More" : "show Less"}</span>
+                                
+                              
+                          </div>
+                        ))}
+                  </div>
+              </div>
+            ))}
+         </div>
+           
+           <div className = "flex relative flex-col bg-white shadow-xl px-5 py-[25px]" >
+                <span className ="text-2xl text-black font-bold tracking-wider hover:text-slate-700">Related Posts:</span> 
+
+                <ol className="relative list-decimal pl-2 ">
+                              
+                              {filteredPost && filteredPost?.map((posts:any)=>(
+                                <li key = {posts._id}  className = "flex li flex-col md:justify-between py-[20px]  md:flex-row px-[30px]">
+                                 
+                              
+                                     <div className=" line-clamp-5 font-bold -mt-[48px] md:-mt-[17px]  capitalize text-black pt-[15px]" >
+                                   
+                                     <Link href= {`/articles/${posts._id}`}> <span className = "md:pl-5 text-2xl pl-[30px]  ">
+                                        
+                                        {posts.title}
+                                      
+                                      
+                                      </span>
+                                      <div className = "pr-[20px] pt-[20px]">
+                                        <span className = "text-gray-500 py-[15px]">{posts.description}</span>
+                                      </div>
+                                      </Link>
+                                    
+                                     </div>
+
+                                     <Image className="pt-[30px] w-screen" src={builder.image(posts.mainImage).height(200).width(300).url()} alt={posts.mainImage.alt} height={200} width={300} />
+                              
+                            
+                          </li>
+                              ))}
+                         
+                           
+                        
+                          
+                  </ol>         
+           </div>
+           
+           
             </div>
          
          
@@ -193,6 +273,11 @@ listItem: {
       </Backdrop>
     </div>
    )}
+
+
+                             
+                           
+  
           </main>
         );
       }

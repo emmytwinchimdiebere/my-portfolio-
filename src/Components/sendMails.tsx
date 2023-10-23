@@ -41,7 +41,7 @@ export async function SendMails(formData:FormData) {
       reply_to:SenderEmail as string,
      react:<ContactForm message ={message as string } SenderEmail= {SenderEmail as string} />
     });
-      console.log("message sent")
+     
   return  { message:"your email is Successfully sent "}
 }
 

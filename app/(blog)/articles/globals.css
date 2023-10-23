@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,6 +12,23 @@
 html {
     --line-color:gray
 }
+ol.pl-2 {
+    counter-reset: my-counter;
+  }
+
+  .li::before {
+    content: counter(my-counter, decimal-leading-zero);
+    counter-increment: my-counter;
+    margin-right: 0.5rem; /* Adjust the space between number and text */
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--line-color);
+    font-family: "Nosifer" , sans-serif;
+  }
+
+
+
+
 
 .link::before{
     content: "";

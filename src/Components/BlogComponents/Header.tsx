@@ -2,20 +2,36 @@
 "use client"
 import Image from 'next/image'
 import Link from  "next/link"
-import { FaArrowCircleRight, FaInfoCircle } from 'react-icons/fa'
 import React, { useEffect, useState } from  "react"
 import { client } from "../../../sanity/lib/client"
 import { SanityDocument } from "next-sanity"
 import { QueryByCatgory } from "../../../lib/query"
+import { ChevronDown } from 'lucide-react';
+import { Button as ButtonItems , Dropdown, Menu as MenuItems } from 'antd';
+import type  {MenuProps,} from "antd"
+
 
 function Header() {
   const [category, setCategory] = useState<SanityDocument[]>();
   const [loader, setLoader] = useState<boolean>()
+  const [toggle, setToggle] = useState<boolean>(false);
 
+ const items:MenuProps['items'] = [{
+    key: '',
+    label:(
+        <MenuItems>
+            {category && category?.map((link)=>(
+                <MenuItems.Item key = {link._id}>
+                    <Link className='text-black flex flex-col gap-2 hover:text-black/10'  href = {`/categories/${link._id}`}>{link.title}</Link>
+                </MenuItems.Item>
+            ))}
+        </MenuItems>
+    )
+ }]
  
 
   const fetchCategories = async ()=>{
-      setLoader(!loader)
+      setLoader(!loader) 
       const fetch = await client.fetch<SanityDocument[]>(QueryByCatgory);
       if(fetch){
           setLoader(false)
@@ -26,29 +42,34 @@ function Header() {
       fetchCategories()
   },[])
   
-  console.log(category)
+
   return (
       <>
 
-<div className=' flex flex-row flex-nowrap  justify-between relative w-full h-auto px-5 py-4 bg-gray-100 '>
+<div className=' flex flex-row flex-nowrap  relative w-full h-auto px-5 py-4 bg-gray-100 '>
             <div className='flex-start flex-row flex gap-[20px]  mt-[5px] text-[1.2rem] text-black'>
              <Link href={"/"} as={"/"}>
 
              <Image className='rounded-full w-[40px] h-[40px] ' alt='myImage' height={50} width={50} src={ "/me.png"} objectFit='center' priority = {true} quality={95}/>
              </Link>
              <Link as = {"/articles"} href={"/articles"}><h1 className='leading-[50px] font-bold'>rockycodes</h1></Link>
+            
+             <div className = "relative leading-[50px] sm:px-[40px] px-[20px]">
                
+                         
+            <Dropdown  menu = {{items}} placement="bottom" arrow>
+             <ButtonItems>Categories</ButtonItems>
+            </Dropdown>
+                         
+        
+                            
+                  
+               </div>
             </div>
-            <div className='flex flex-row text-black gap-[10px] relative overflow-x-auto whitespace-nowrap inlineelement  '>
-                {category && category?.map((link)=>(
-                 <div key={link._id} className=' text-[1.2rem] transition md:text-[.1.4rem] mt-[10px] hover:bg-black/10 hover:rounded-full px-[15px]  pt-[5px] ' >
-                     <Link   href={`/categories/${link._id}`}>{link.title}</Link>
-                 </div>
-                ))}
+            <div className='flex flex-row text-black gap-[10px] relative '>
+               
 
-              <div className='leading-[50px]'>
-              <span className='group flex w-[100%] gap-[5px] flex-row text-blue-700 border-2 border-black/50 bg-transparent  px-[10px] py-[4px] rounded-full relative hover:bg-white hover:text-black transition md:right[20%] right-[1%]'> Subscribe to our Daily News Letter <FaArrowCircleRight className='relative top-[15px]  group-hover:translate-x-1 transition-all' /></span>
-            </div>
+          
             </div>
 
           
@@ -62,10 +83,7 @@ function Header() {
              <span className='text-bold lg:-mt-[42px] -mt-[35px] px-[10px] ml-5  lg:ml-8 relative'>deveosphere for every developer.</span>
             </div>
 
-             <div className='mt-[20px] flex flex-row  px-10 py-5 bg-gray-50'>
-              <FaInfoCircle className='text-3xl relative mt-5 animate-ping h-5 w-5 rounded-full text-purple-800 '  />
-             <span className='text-gray-300 bg-gray-50 p-4'>News in product features,tutotrials on latest tech, Weekly News letter to keep you Updated & much more.</span>
-             </div>
+             
             </div>
       </>
   )

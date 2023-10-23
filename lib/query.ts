@@ -12,10 +12,31 @@ export const postsQuery = groq`*[_type == "post" && defined(slug.current)]{
 
 // Get a single post by its slug
 export const postQuery = groq`*[_type == "post" &&  _id == $slug ]{ 
-   ..., author->, categories[]->, tags[]->
+   ..., author->, categories[]->, tags[]->, 
+
+   "comments": *[_type == "comment" && post._ref == ^._id]{
+    name, email, text, _createdAt
+   },
+   
+   "related": *[_type == "post" && count(categories[@._ref in ^.^.categories[]._ref]) > 0] | order(publishedAt desc, _createdAt desc) [0..4] {
+      title,
+      slug,
+      mainImage,
+      description,
+      _id
+    }
     
   }` ;
+  export const metaQuery = groq`*[_type == "post" &&  _id == $slug ]{ 
+ title, description
+ }` ;
+ export const categoryQuery = groq`*[_type == "category" &&  _id == $slug ]{ 
+  title, description
+  }` ;
 
+  export const tagQuery = groq`*[_type == "tag" &&  _id == $slug ]{ 
+    tag, description
+    }` ;
 // Get all post slugs
 export const postPathsQuery = groq`*[_type == "post" && defined(slug.current)][]{
     "params": { "slug": slug.current }

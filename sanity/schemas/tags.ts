@@ -9,7 +9,7 @@ export default defineType(
         fields: [
             defineField({
                 name:"tag",
-                title:"PostTag",
+                title:"Tag",
                 type:"string",
                 validation: (rule)=>rule.required() 
             }),

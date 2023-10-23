@@ -22,7 +22,6 @@ export const FetchPostsByCategoryId=({id}:{id:string})=>{
             const delay = (ms:number)=>new Promise((resolve)=>setTimeout(resolve, ms));
             const [open, setOpen] = useState<boolean>(false);
 
-            console.log(tags)
            
    
 

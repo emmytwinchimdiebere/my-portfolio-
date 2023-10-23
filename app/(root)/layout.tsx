@@ -10,9 +10,10 @@ import MobileLinks from "@/Components/mobileLinks"
 
 
 const poppins = Poppins({ subsets: ['latin'], weight:"200" });
+const inter =  Inter({subsets: ['latin'], weight:"300"});
 
 
-export const metadata: Metadata = {
+ const metadata: Metadata = {
   title: 'Potofolio | Chukwuemeka Peter Aggiah',
   description: 'Chukwuemeka Peter Aggiah is a Full stack developer with hands on years of experience',
 }
