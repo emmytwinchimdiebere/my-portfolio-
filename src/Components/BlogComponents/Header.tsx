@@ -6,8 +6,7 @@ import React, { useEffect, useState } from  "react"
 import { client } from "../../../sanity/lib/client"
 import { SanityDocument } from "next-sanity"
 import { QueryByCatgory } from "../../../lib/query"
-import { ChevronDown } from 'lucide-react';
-import { Button as ButtonItems , Dropdown, Menu as MenuItems } from 'antd';
+import { Button, Dropdown, Menu } from 'antd';
 import type  {MenuProps,} from "antd"
 
 
@@ -19,13 +18,13 @@ function Header() {
  const items:MenuProps['items'] = [{
     key: '',
     label:(
-        <MenuItems>
+        <Menu>
             {category && category?.map((link)=>(
-                <MenuItems.Item key = {link._id}>
+                <Menu.Item key = {link._id}>
                     <Link className='text-black flex flex-col gap-2 hover:text-black/10'  href = {`/categories/${link._id}`}>{link.title}</Link>
-                </MenuItems.Item>
+                </Menu.Item>
             ))}
-        </MenuItems>
+        </Menu>
     )
  }]
  
@@ -58,7 +57,7 @@ function Header() {
                
                          
             <Dropdown  menu = {{items}} placement="bottom" arrow>
-             <ButtonItems>Categories</ButtonItems>
+             <Button>Categories</Button>
             </Dropdown>
                          
         
