@@ -12,7 +12,7 @@ export const postsQuery = groq`*[_type == "post" && defined(slug.current)]{
 
 // Get a single post by its slug
 export const postQuery = groq`*[_type == "post" &&  _id == $slug ]{ 
-   ..., author->, categories[]->, tags[]->, 
+   ..., author->, categories[]->, tags[]->, title, description,
 
    "comments": *[_type == "comment" && post._ref == ^._id]{
     name, email, text, _createdAt
@@ -27,12 +27,11 @@ export const postQuery = groq`*[_type == "post" &&  _id == $slug ]{
     }
     
   }` ;
-  export const metaQuery = groq`*[_type == "post" &&  _id == $slug ]{ 
- title, description
- }` ;
+ 
  export const categoryQuery = groq`*[_type == "category" &&  _id == $slug ]{ 
   title, description
-  }` ;
+  }` 
+  ;
 
   export const tagQuery = groq`*[_type == "tag" &&  _id == $slug ]{ 
     tag, description

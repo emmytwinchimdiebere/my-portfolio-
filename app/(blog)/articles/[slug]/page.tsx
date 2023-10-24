@@ -1,7 +1,7 @@
 // ./nextjs-app/app/[slug]/page.tsx
 import { SanityDocument } from "@sanity/client";
 import Post from "@/Components/BlogComponents/postBySlug";
-import { metaQuery, postPathsQuery, postQuery} from  "../../../../lib/query";
+import { postPathsQuery, postQuery} from  "../../../../lib/query";
 import { sanityFetch, token } from "../../../../lib/client";
 import { client } from "../../../../lib/sanity-client";
 import PreviewProvider from "../../../../lib/PreviewProvider";
@@ -28,14 +28,14 @@ export async function generateMetadata({ params, searchParams }: Props, parent: 
   // read route params
   const slug = params.slug
  
-      console.log(slug);
+     
        // fetch data
-  const post:any = await client.fetch(metaQuery, {slug});
+  const post:any = await client.fetch(postQuery, {slug});
   const seo = post?.map((seo:any)=>seo.title)
   const descrip =  post?.map((describe:any)=> describe.description)
   const [title] = seo
   const [description] = descrip;
-
+console.log(post);
   
   
 
