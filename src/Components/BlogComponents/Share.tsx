@@ -4,8 +4,8 @@ import React from "react"
 
 export const Share = ()=>{
     return (
-        <div className= "">
-            
+        <div className= "fixed bg-white ">
+
         </div>
     )
 }
