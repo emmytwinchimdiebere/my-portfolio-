@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url  	    = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User{
+  id Int @id @default(autoincrement())
+  email String @unique
+ lastname String 
+ firstname String 
+  roles user_roles[]
+  posts Post[]
+  createdAt DateTime @default(now())
+  email_Verify Boolean @default(false)
+  comments Comment[]
+  onboadring  Boolean @default(false)
+  clerkUserId String @unique
+  username String @unique
+  avater String
+  bioInfo String?
+
+
+  @@map("users")
+
+}
+
+model Roles{
+  id Int @id @default(autoincrement())
+  role String @default("User") @unique
+  description String?
+  createdAt DateTime @default(now())
+  users user_roles[]
+
+
+  @@map("roles")
+}
+
+
+
+model user_roles {
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+  roles Roles @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  roleId Int
+  assignedAt DateTime @default(now())
+
+  @@id([userId, roleId])
+  @@map("user_roles")
+}
+
+model Post{
+  id Int @id @default(autoincrement())
+  title String @unique
+  slug String @unique
+  description String
+  body String
+  image String?
+  published Boolean? @default(false)
+  created_at DateTime @default(now())
+  author User @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  userEmail String
+   category  Category @relation(fields: [categoryId], references: [id])
+   categoryId Int
+   tags post_tag[]
+   updatedAt DateTime @updatedAt
+    comments Comment[]
+    videoUrl  String?
+
+  @@map("posts")
+}
+
+model Category{
+  id Int @id @default(autoincrement())
+  name String
+  description String?
+  posts Post[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@unique([name])
+  @@index([id])
+  @@map("categories")
+}
+
+model Tag{
+  id Int @id @default(autoincrement())
+  name String 
+  description String?
+  createAt DateTime @default(now())
+  @@unique([name])
+  @@index([id])
+  @@map("tags")
+  posts post_tag[]
+}
+
+model post_tag{
+  post Post @relation(fields: [postId], references: [id])
+  postId Int
+  tag Tag @relation(fields: [tagId], references: [id])
+  tagId Int
+  createdAt DateTime @default(now())
+
+  @@id([postId, tagId])
+}
+
+model Comment{
+  id Int @id @default(autoincrement())
+   user User @relation(fields: [userEmail], references: [email]) 
+   userEmail String
+  name String
+  text String
+  post  Post @relation(fields: [postSlug], references: [slug])
+  postSlug String
+
+
+  @@map("comments")
+ 
+}

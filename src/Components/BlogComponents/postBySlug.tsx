@@ -29,7 +29,7 @@ import CommentForm from "./CommentForn";
 
 
 
-    export default function Post({slug, post }: { slug:string, post:SanityDocument}) {
+    export default function Post({slug }: { slug:string}) {
       const [posts, setPost] = useState<SanityDocument[]>();
       const [loader, setLoader] = useState<boolean>(false);
       const delay = (ms:number)=>new Promise((resolve)=>setTimeout(resolve, ms));
@@ -57,7 +57,7 @@ import CommentForm from "./CommentForn";
       useEffect(()=>{
         fetchSinglePost();
 
-        {post && post?.map((item:any)=> { const filter =  item.related.filter((filteredPost:any)=> filteredPost._id !==  item._id)
+        {posts && posts?.map((item:any)=> { const filter =  item.related.filter((filteredPost:any)=> filteredPost._id !==  item._id)
           setFilteredPost(filter);
         })}
       }, [])

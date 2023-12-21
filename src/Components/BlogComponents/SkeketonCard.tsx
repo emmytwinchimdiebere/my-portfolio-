@@ -5,40 +5,55 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 
 export const SkeletonCard = ({count}:{count:number})=>(
-    <div className="relative bg-white px-5 py-10 ">
-             <h1>Fetching posts...</h1>
-        <div className="group  pb-6  grid  grid-cols-1  md:grid-cols-2 lg:grid-cols-3 relative gap-[3.3rem] w-[100%]">
+    <div className="relative bg-white px-5 py-10 hidden lg:flex">
+          
+        <div className="group flex flex-col justify-start w-full">
         
         {Array(count).fill(0).map((item, index)=> 
 
-<div key={index} className="relative flex flex-col  gap-[40px]">
-<Skeleton className="bg-black/50" height={300} width={400} />
+<div key={index} className="relative flex flex-col ">
 
-
-    <div className = "relative flex-row flex mt-[10px] gap-[10px] w-[100%] ">
+    <div className = "relative flex-col flex mt-[10px]  w-[100%] ">
        
-        <div className="lg:w-[50%] relative lg:left-0 ">
-                <Skeleton count={1} width={170} />
+        <div className = "flex flex-row relative">
+        <div className="rounded-full w-[48px] h-[48px] ">
+                <Skeleton circle height = {38} width={38} />
+        </div>
+        <div className="lg:w-[50%] lg:right-0 relative top-4 ml-4">
+                <Skeleton count = {1} width={200} />
+        </div>
         </div>
        
-        <div className="lg:w-[50%] lg:right-0 relative ml-4">
-                <Skeleton count = {1} width={170} />
+       <div className = "flex flex-row">
+
+       <div className="lg:w-[75%] lg:right-0 relative ml-4 flex flex-col">
+                <Skeleton count = {3} width={600} />
+
+            <div className  = "flex flex-row gap-4 top-5">
+            <div className=" animate-pulse">
+        <Skeleton width={150} count={1} />
+            </div>
+
+            <div className=" animate-pulse">
+        <Skeleton width={150} count={1} />
+            </div>
+           
+            <div className=" animate-pulse rounded-full bg-black/10">
+            <Skeleton width={150} count={1} />
+            </div>
+            </div>
         </div>
+
+        <div className="lg:w-[25%] lg:right-0 relative ml-4">
+                <Skeleton count = {1} width={200} height={200} />
+        </div>
+
+       
+       </div>
       
     </div>
 
-    <div className="">
-        <Skeleton width={400} count={2} />
-    </div>
 
-
-        <div className="bg-black/10 h-[100px] py-[25px] animate-pulse w-[400px] relative flex flex-row justify-between px-[20px]">
-              <Skeleton circle width={50}  height={50}/>  
-
-              <div className="w-[100px] h-12 rounded-lg animate-pulse bg-slate-400/10">
-
-              </div>
-        </div>
     </div>
         )}
          

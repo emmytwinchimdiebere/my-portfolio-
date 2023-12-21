@@ -6,6 +6,7 @@ import Header from '@/Components/header';
 import SetActiveLinkContextProvider from '@/context/setActiveLinkContext';
 import { ThemeProvider } from '@/context/ThemePovider';
 import MobileLinks from "@/Components/mobileLinks"
+import { Analytics } from '@vercel/analytics/react'
 
 
 
@@ -43,8 +44,7 @@ export default function RootLayout({
       <Header />
       <MobileLinks />
       {children}
-   
-      
+      <Analytics />
       </main>
 
       </SetActiveLinkContextProvider>

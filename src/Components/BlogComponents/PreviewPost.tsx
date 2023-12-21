@@ -18,5 +18,5 @@ export default function PreviewPost({post}: {post: SanityDocument;}) {
     }
  
 
-  return <Post post={data} slug="" />;
+  return <Post slug="" />;
 }
