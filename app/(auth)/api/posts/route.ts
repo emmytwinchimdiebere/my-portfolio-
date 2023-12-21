@@ -1,9 +1,6 @@
 import prisma from "@/lib/db";
 
-export const  config  =  {
- run:"edge"   
-}
-
+export const  runtime =  "edge"
 export  async  function  GET(){
     try {
         const  posts  =  await prisma?.post.findMany({

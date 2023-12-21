@@ -1,9 +1,7 @@
 import prisma from  "@/lib/db";
 
 
-export const config ={
-    run : "edge"
-}
+export const  runtime =  "edge"
 
 export async function POST(request:Request){
         try{

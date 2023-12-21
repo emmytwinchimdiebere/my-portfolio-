@@ -6,9 +6,7 @@ import { WebhookEvent } from '@clerk/nextjs/server'
 
 
 
-export const config = {
-    run : "edge"
-}
+export const  runtime =  "edge"
 
 
 
