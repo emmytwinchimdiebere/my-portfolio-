@@ -10,7 +10,11 @@ export  async function  GET(){
         const  categories = await prisma?.category.findMany();
 
         if(categories){
-            return Response.json({categories:categories, staus:200})
+            return new  Response(JSON.stringify({
+                
+                categories:categories,
+                 staus:200
+            }))
             }
         }
     
