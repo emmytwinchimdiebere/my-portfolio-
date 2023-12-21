@@ -2,7 +2,7 @@ import React from  "react"
 import CreatePage from "@/Components/BlogComponents/createPost";
 import {currentUser} from "@clerk/nextjs"
 
-export const fetchCategories = async ()=>{
+export const FetchCategories = async ()=>{
     const res = await fetch("http://localhost:3000/api/categories/getCategories",  {
       cache:"no-cache",
       method:"GET",
@@ -31,7 +31,7 @@ const FetchTags = async()=>{
 }
 
 export default async function Page(){
-  const  categories  =  await fetchCategories()
+  const  categories  =  await FetchCategories()
   const tags =  await FetchTags();
   const user = await currentUser();
    const  email  =  user?.emailAddresses?.map((mail)=>mail.emailAddress) ;
