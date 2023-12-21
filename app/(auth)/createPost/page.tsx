@@ -2,7 +2,7 @@ import React from  "react"
 import CreatePage from "@/Components/BlogComponents/createPost";
 import {currentUser} from "@clerk/nextjs"
 
-export const FetchCategories = async ()=>{
+ const FetchCategories = async ()=>{
     const res = await fetch("http://localhost:3000/api/categories/getCategories",  {
       cache:"no-cache",
       method:"GET",
@@ -30,7 +30,7 @@ const FetchTags = async()=>{
     if(res.ok) return tags 
 }
 
-export default async function Page(){
+export default async function PostPage(){
   const  categories  =  await FetchCategories()
   const tags =  await FetchTags();
   const user = await currentUser();
